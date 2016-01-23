@@ -11,10 +11,6 @@ def success(request):
     return render(request,'success.html')
 
 @csrf_exempt
-def slf(request):
-    return render(request,'slf.html')
-
-@csrf_exempt
 def redirect(request):
 
     if request.method == 'POST':
