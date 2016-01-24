@@ -20,8 +20,9 @@ class myLog:
         self.replay  = "/media/logs/%s/game_replay.js"  % (gid)
 
 @csrf_exempt
-def success(request):
-    return render(request,'success.html')
+def home(request):
+    return render(request,'oops.html')
+
 
 @csrf_exempt
 def redirect(request):
@@ -30,7 +31,7 @@ def redirect(request):
         if form.is_valid():
             newdoc = Document(docfile=request.FILES['docfile'])
             newdoc.save()
-
+            
             game_id = '5655'
             bot_fnames = ["bot6.py", "bot7.py"]
             game_worked = False
