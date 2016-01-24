@@ -7,23 +7,19 @@ from .models import Document
 from .forms import DocumentForm
 # Create your views here.
 @csrf_exempt
-def success(request):
-    return render(request,'success.html')
+def home(request):
+    return render(request,'oops.html')
+
 
 @csrf_exempt
 def redirect(request):
-
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
         if form.is_valid():
             newdoc = Document(docfile=request.FILES['docfile'])
             newdoc.save()
-
             return render_to_response('success.html',context_instance=RequestContext(request))
 
         else:
             return render_to_response('fnv.html',context_instance=RequestContext(request))
-
-    else:
-        form = DocumentForm()
     return render_to_response('failure.html',context_instance=RequestContext(request))
