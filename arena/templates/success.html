@@ -1,2 +1,32 @@
-<title>Success</title>
-<h3>Uploaded</h3>
+<html>
+	<head>
+		<title>Success</title>
+	</head>
+	<body>
+		<div id=log_links>
+			{% if status %}
+			<h3>Logs of Game</h3>
+			<ul>
+			{% for bot in log_links %}
+				<li>Team "{{bot.tname}}", used <a href="{{bot.bot_uri}}">{{bot.fname}}</a></li>
+				<ul>
+					<li>Input  <a href="{{bot.input}}">log</a></li>
+					<li>Error  <a href="{{bot.error}}">log</a></li>
+					<li>Output <a href="{{bot.output}}">log</a></li>
+				</ul>
+			{% empty %}
+				<li>Sorry, no logs were made!</li>
+			{% endfor %}
+			<li><a href="{{game_log}}">Game Log</a></li>
+			<li><a href="{{json_replay}}">JSON replay objects</a></li>
+			</ul>
+			
+			{% else %}
+			Oops!, game failed!
+			{% endif %}
+		</div>
+		<div>
+			<code>{{log_json}}</code>
+		</div>
+	</body>
+</html>
